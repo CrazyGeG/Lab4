@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: '/api', // Relative path since both are served from the same domain
+    baseURL: 'http://3.136.25.8:9000', 
   });
 
 // API Functions
