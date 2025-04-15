@@ -13,14 +13,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', studentRoutes);
 
 // Static files - ONLY in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname)));
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname)));
   
-  // Catch-all route - MUST be last
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-  });
-}
+//   // Catch-all route - MUST be last
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'index.html'));
+//   });
+// }
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => {
